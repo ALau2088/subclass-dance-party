@@ -1,7 +1,7 @@
-$(document).ready(function() {
+$(document).ready(function () {
   window.dancers = [];
 
-  $('.addDancerButton').on('click', function(event) {
+  $('.addDancerButton').on('click', function (event) {
     /* This function sets up the click handlers for the create-dancer
      * buttons on dancefloor.html. You should only need to make one small change to it.
      * As long as the "data-dancer-maker-function-name" attribute of a
@@ -22,12 +22,29 @@ $(document).ready(function() {
 
     // make a dancer with a random position
 
-    var dancer = dancerMakerFunction(
+    var dancer = new dancerMakerFunction(
       $("body").height() * Math.random(),
       $("body").width() * Math.random(),
       Math.random() * 1000
     );
+    dancer.$node.addClass(dancerMakerFunctionName);
     $('body').append(dancer.$node);
+
+    $('.BlinkyDancer').attr('src', '../images/4948-200.png')
+    $('.HappyDancer').attr('src', '../images/download.jpeg')
+    $('.SadDancer').attr('src', '../images/Paper-Bowser-icon.png')
+
+    window.dancers.push(dancer.$node);
+
+    $('.lineUp').on('click', function () {
+      dancer.lineUp()
+    })
+
+    console.log(dancer)
+
   });
+
 });
+
+
 
